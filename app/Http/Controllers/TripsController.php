@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Warehouse;
+use App\Models\Trips;
 use Illuminate\Http\Request;
 
-class WarehouseController extends Controller
+class TripsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,18 +35,16 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        $warehouse = new Warehouse;
-        $warehouse->create();
-        return view('welcome');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Warehouse  $warehouse
+     * @param  \App\Models\Trips  $trips
      * @return \Illuminate\Http\Response
      */
-    public function show(Warehouse $warehouse)
+    public function show(Trips $trips)
     {
         //
     }
@@ -54,10 +52,10 @@ class WarehouseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Warehouse  $warehouse
+     * @param  \App\Models\Trips  $trips
      * @return \Illuminate\Http\Response
      */
-    public function edit(Warehouse $warehouse)
+    public function edit(Trips $trips)
     {
         //
     }
@@ -66,10 +64,10 @@ class WarehouseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Warehouse  $warehouse
+     * @param  \App\Models\Trips  $trips
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Warehouse $warehouse)
+    public function update(Request $request, Trips $trips)
     {
         //
     }
@@ -77,12 +75,11 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Warehouse  $warehouse
+     * @param  \App\Models\Trips  $trips
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Warehouse $warehouse)
+    public function destroy(Trips $trips)
     {
         //
     }
-
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cargo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CargoController extends Controller
 {
@@ -14,7 +15,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-        //
+        return view('cargo');
     }
 
     /**
@@ -36,6 +37,11 @@ class CargoController extends Controller
     public function store(Request $request)
     {
         //
+        return Cargo::create([
+            'name' => $request['name'],
+            'official_address' => $request['official_address'],
+            'contact_person' => $request['contact_person'],
+        ]);
     }
 
     /**
@@ -81,5 +87,39 @@ class CargoController extends Controller
     public function destroy(Cargo $cargo)
     {
         //
+    }
+    public function view(Request $request){
+        $cargo = $request->cargo;
+        $details = DB::table('cargo')
+                ->where('name');
+        return view('cargo_status', compact('cargo'));
+    }
+    public function search(Request $request){
+
+        if($request->ajax()) {
+
+            $data = Cargo::where('name', 'LIKE', $request->name.'%')
+                ->get();
+
+            $output = '';
+
+            if (count($data)>0) {
+
+                $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
+
+                foreach ($data as $row){
+
+                    $output .= '<li class="list-group-item">'.$row->name.'</li>';
+                }
+
+                $output .= '</ul>';
+            }
+            else {
+
+                $output .= '<li class="list-group-item">'.'No results'.'</li>';
+            }
+
+            return $output;
+        }
     }
 }

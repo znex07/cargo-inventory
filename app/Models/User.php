@@ -18,6 +18,7 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $fillable = [
         'name',
+        'address',
         'email',
         'password',
     ];
