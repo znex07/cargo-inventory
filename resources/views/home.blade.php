@@ -87,7 +87,7 @@
 <script>
     $(document).ready(function() {
       $('#cargo-table').DataTable();
-        $(document).on('click','.edit-modal', function(){
+        $(document)2.on('click','.edit-modal', function(){
             var stuff = $(this).data('info').split(',');
             fillmodalData(stuff);
             $('#exampleModal').modal('show');
