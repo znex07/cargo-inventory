@@ -17,6 +17,7 @@ class CreateCargosTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('cargo_code');
+            $table->string('cargo_status');
             $table->string('cargo_description');
             $table->string('official_address');
             $table->string('contact_person');

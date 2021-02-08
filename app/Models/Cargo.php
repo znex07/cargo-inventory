@@ -11,6 +11,7 @@ class Cargo extends Model
     protected $fillable = [
         'name',
         'cargo_code',
+        'cargo_status',
         'cargo_description',
         'official_address',
         'contact_person'

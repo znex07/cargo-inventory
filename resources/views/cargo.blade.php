@@ -26,7 +26,33 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Official Adress') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Cargo Code') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cargo_code" type="text" class="form-control @error('name') is-invalid @enderror" name="cargo_code" value="{{ old('cargo_code') }}" required autocomplete="cargo_code" autofocus>
+
+                                @error('cargo_code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cargo_description" type="text" class="form-control @error('name') is-invalid @enderror" name="cargo_description" value="{{ old('cargo_description') }}" required autocomplete="cargo_description" autofocus>
+
+                                @error('cargo_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Official Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="official_address" value="{{ old('address') }}" required autocomplete="address" autofocus>

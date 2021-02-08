@@ -8,7 +8,7 @@
         <h1>Electronic Data Interface</h1>
         <form method="POST" action="view-search">
         @csrf
-            <input type="text" name="cargo" id="country" placeholder="Enter cargo code" class="form-control my-4" autocomplete="off">
+            <input type="text" name="cargo_code" id="country" placeholder="Enter cargo code" class="form-control my-4" autocomplete="off">
             <button class="btn btn-info  btn-block" name="btn-search" >View Status</button>
             <div id="country_list"></div>
 

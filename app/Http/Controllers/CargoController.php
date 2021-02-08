@@ -37,11 +37,14 @@ class CargoController extends Controller
     public function store(Request $request)
     {
         //
-        return Cargo::create([
+        Cargo::create([
             'name' => $request['name'],
+            'cargo_code' => $request['cargo_code'],
             'official_address' => $request['official_address'],
+            'cargo_description' => $request['cargo_description'],
             'contact_person' => $request['contact_person'],
         ]);
+        return redirect('home');
     }
 
     /**
@@ -90,9 +93,10 @@ class CargoController extends Controller
     }
     public function view(Request $request){
         $cargo = $request->cargo;
-        $details = DB::table('cargo')
-                ->where('name');
-        return view('cargo_status', compact('cargo'));
+        $details = DB::table('cargos')
+                ->where('cargo_code',$request->cargo_code)->get();
+
+        return view('cargo_status', compact('details','cargo'));
     }
     public function search(Request $request){
 

@@ -48,7 +48,6 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
 }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
@@ -63,7 +62,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-image: url("/img/CAF-Blog-What-Is-Freight-Forwarding.jpg");
+  background-color: #f8fafc;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10004,4 +10003,8 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+body {
+  background-image: url("/img/CAF-Blog-What-Is-Freight-Forwarding.jpg");
+  background-color: none !important;
 }
