@@ -260,6 +260,25 @@
                         $('#message').addClass('alert-success');
                         $('.alert-dismissible').addClass('show');
                         $('.error').addClass('hidden');
+
+                        $('.item' + result.id).replaceWith("<tr class='item" +
+                            result.id + "'>" +
+                            "<td><img src='{{asset('/img/'.$cargo->name.'.svg')}}' class='img-thumbnail rounded mx-auto d-block' style='height: 50px; width:50px'></td><td>" +
+                            result.name + "</td><td>" +
+                            result.cargo_status + "</td><td>" +
+                            result.cargo_code + "</td><td>" +
+                            result.cargo_description + "</td><td>" +
+                            result.official_address  + "</td><td>" +
+                            result.contact_person + "</td>" +
+                          "<td><button class='edit-modal btn btn-sm btn-info' data-info='" +
+                          result.name+","+
+                          result.cargo_status+","+
+                          result.cargo_code+","+
+                          result.cargo_description+","+
+                          result.official_address+","+
+                          result.contact_person+","+
+                          result.id+"'><span class='fa fa-edit'></span> Edit</button> <button class='delete-modal btn btn-sm btn-danger' data-info='" + result.id+","+result.first_name+","+result.last_name+","+result.email+","+result.gender+","+result.country+","+result.salary+"' ><span class='fa fa-trash'></span> Delete</button></td></tr>");
+
                     }
                 }
             });
