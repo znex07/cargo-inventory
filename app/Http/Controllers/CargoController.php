@@ -36,26 +36,30 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \QrCode::size(100)->format('svg')->generate($request['name'],'../public/img/'. $request['name'] .'.svg');
         Cargo::create([
             'name' => $request['name'],
             'cargo_code' => $request['cargo_code'],
+            'cargo_status' => $request['cargo_status'],
             'official_address' => $request['official_address'],
             'cargo_description' => $request['cargo_description'],
             'contact_person' => $request['contact_person'],
-        ]);
-        return redirect('home');
-    }
+            ]);
+            return redirect('home');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cargo $cargo)
+        /**
+         * Display the specified resource.
+         *
+         * @param  \App\Models\Cargo  $cargo
+         * @return \Illuminate\Http\Response
+         */
+    public function show(Request $request)
     {
-        //
+        $cargo_code = $request->cargo_code;
+        $cargo = Cargo::where('cargo_code', $cargo_code)->pluck('cargo_status');
+
+        return view('cargo_status', compact('cargo', 'cargo_code'));
     }
 
     /**
@@ -78,7 +82,10 @@ class CargoController extends Controller
      */
     public function update(Request $request, Cargo $cargo)
     {
-        //
+        \QrCode::size(100)->format('svg')->generate($request['name'],'../public/img/'. $request['name'] .'.svg');
+
+        return view('cargo_status', compact('cargo', 'cargo_code'));
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cargo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cargos = DB::table('cargos')->get();
+        $cargos = Cargo::all();
         return view('home',compact('cargos'));
     }
 }
