@@ -287,21 +287,22 @@
                     $('.alert-dismissible').addClass('show');
                     console.log(result.id);
                         $('.item' + result.id).replaceWith("<tr class='item" +
-                            result.id + "'><td>" +
+                            result.id + "'>" +
+                            "<td><img src='{{asset('/img/'.$cargo->name.'.svg')}}' class='img-thumbnail rounded mx-auto d-block' style='height: 50px; width:50px'></td><td>" +
                             result.name + "</td><td>" +
                             result.cargo_status + "</td><td>" +
                             result.cargo_code + "</td><td>" +
                             result.cargo_description + "</td><td>" +
                             result.official_address  + "</td><td>" +
-                            result.contact_person + "</td><td>" +
-                          "</td><td><button class='edit-modal btn btn-info' data-info='" +
-                          result.id+","+
+                            result.contact_person + "</td>" +
+                          "<td><button class='edit-modal btn btn-sm btn-info' data-info='" +
                           result.name+","+
                           result.cargo_status+","+
                           result.cargo_code+","+
                           result.cargo_description+","+
                           result.official_address+","+
-                          result.contact_person+"'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-info='" + result.id+","+result.first_name+","+result.last_name+","+result.email+","+result.gender+","+result.country+","+result.salary+"' ><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                          result.contact_person+","+
+                          result.id+"'><span class='fa fa-edit'></span> Edit</button> <button class='delete-modal btn btn-sm btn-danger' data-info='" + result.id+","+result.first_name+","+result.last_name+","+result.email+","+result.gender+","+result.country+","+result.salary+"' ><span class='fa fa-trash'></span> Delete</button></td></tr>");
 
                 }
             });
