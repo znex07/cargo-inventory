@@ -17,34 +17,9 @@
 </div>
 </div>
 <script type="text/javascript">
-// $(document).ready(function () {
-
-//     $('#country').on('keyup',function() {
-//         var query = $(this).val();
-//         $.ajax({
-
-//             url:"{{ route('search') }}",
-
-//             type:"GET",
-
-//             data:{'cargo':query},
-
-//             success:function (data) {
-//                 console.log(data);
-//                 $('#country_list').html(data);
-//             }
-//         })
-//         // end of ajax call
-//     });
-
-
-//     $(document).on('click', 'li', function(){
-
-//         var value = $(this).text();
-//         $('#country').val(value);
-//         $('#country_list').html("");
-//     });
-// });
+$(document).ready(function () {
+    
+});
 </script>
 @endsection
 

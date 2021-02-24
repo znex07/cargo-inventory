@@ -5,55 +5,43 @@ namespace App\Http\Controllers;
 use App\Models\Cargo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CargoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('cargo');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if($request->ajax())
+        {
+            $rules = array (
+                'name' => 'required',
+            );
+            $validator = Validator::make ( $request->all(), $rules );
+            if ($validator->fails ())
+                return Response::json ( array (
+                        'errors' => $validator->getMessageBag ()->toArray ()
+                ) );
+            else {
+                \QrCode::size(100)->format('svg')->generate($request['name'],'../public/img/'. $request['name'] .'.svg');
+                $data = new Cargo;
+                $data->name = $request->name;
+                $data->cargo_code = $request->cargo_code;
+                $data->cargo_status = $request->cargo_status;
+                $data->cargo_description = $request->cargo_description;
+                $data->official_address = $request->official_address;
+                $data->contact_person = $request->contact_person;
+                $data->save();
+
+                return response()->json ( $request );
+            }
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        \QrCode::size(100)->format('svg')->generate($request['name'],'../public/img/'. $request['name'] .'.svg');
-        Cargo::create([
-            'name' => $request['name'],
-            'cargo_code' => $request['cargo_code'],
-            'cargo_status' => $request['cargo_status'],
-            'official_address' => $request['official_address'],
-            'cargo_description' => $request['cargo_description'],
-            'contact_person' => $request['contact_person'],
-            ]);
-            return redirect('home');
-        }
-
-        /**
-         * Display the specified resource.
-         *
-         * @param  \App\Models\Cargo  $cargo
-         * @return \Illuminate\Http\Response
-         */
     public function show(Request $request)
     {
         $cargo_code = $request->cargo_code;
@@ -62,41 +50,33 @@ class CargoController extends Controller
         return view('cargo_status', compact('cargo', 'cargo_code'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cargo $cargo)
+    public function edit(Request $request,Cargo $cargo)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cargo $cargo)
-    {
         \QrCode::size(100)->format('svg')->generate($request['name'],'../public/img/'. $request['name'] .'.svg');
+        if($request->ajax())
+        {
+            $data =  Cargo::find($request->id);
+            $data->name = $request->name;
+            $data->cargo_code = $request->cargo_code;
+            $data->cargo_status = $request->cargo_status;
+            $data->cargo_description = $request->cargo_description;
+            $data->official_address = $request->official_address;
+            $data->contact_person = $request->contact_person;
+            $data->save();
 
-        return view('cargo_status', compact('cargo', 'cargo_code'));
+            return response()->json ( $request );
+        }
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cargo $cargo)
+    public function destroy(Request $request, Cargo $cargo)
     {
-        //
+        if($request->ajax())
+        {
+            Cargo::find ( $request->id )->delete ();
+            return response ()->json ();
+        }
     }
     public function view(Request $request){
         $cargo = $request->cargo;

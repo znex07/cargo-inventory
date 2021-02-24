@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Cargo;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,13 +18,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Cargo::create([
-            'name'           => 'RICE CARGO',
-            'cargo_code'        => 'RICE001',
-            'cargo_status'          => 'In transit',
-            'cargo_description'          => 'rice cargos',
-            'official_address'       => 'Bulacan',
-            'contact_person' => '02121255',
+        // Cargo::factory()->count(50)->make();
+        $faker = Faker::create();
+        foreach (range(1,1000) as $value) {
+            DB::table('cargos')->insert([
+                'name' => $faker->name,
+                'cargo_code'  => $faker->name,
+                'cargo_status'  => $faker->name,
+                'cargo_description'  => $faker->name,
+                'official_address'  => $faker->name,
+                'contact_person' => $faker->name
+            ]);
+        }
+        User::create([
+            'name' => 'admin',
+            'address' => Str::random(20),
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password')
         ]);
+
     }
 }

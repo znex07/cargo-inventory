@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="alert alert-success alert-dismissible fade" role="alert" id="message">
                         <strong>Succesfully Updated!</strong> You should check in on some of those fields below.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <button type="button" class="close" dat a-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -49,7 +49,7 @@
                         <td>{{$cargo->contact_person}}</td>
                         {{-- <td>{{$cargo->created_at}}</td> --}}
                         <td class="no-sort no-click bread-actions">
-                            <button class="edit-modal btn btn-sm btn-info center" data-info="{{$cargo->name}},{{$cargo->cargo_code}},{{$cargo->cargo_status}},{{$cargo->cargo_description}},{{$cargo->official_address}},{{$cargo->contact_person}},{{$cargo->id}}">
+                            <button class="edit-modal btn btn-sm btn-info center" data-info="{{$cargo->id}},{{$cargo->name}},{{$cargo->cargo_code}},{{$cargo->cargo_status}},{{$cargo->cargo_description}},{{$cargo->official_address}},{{$cargo->contact_person}}">
                             <span class="fa fa-edit"></span> Edit
                             </button>
                             <button class="delete-modal btn btn-sm btn-danger center" data-info="{{$cargo->name}},{{$cargo->id}}">
@@ -71,7 +71,8 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit</h5>
+                {{-- <h1 class="text-hide" style="{{asset('/img/'.$cargo->name.'.svg')}}'); width: 50px; height: 50px;">Bootstrap</h1> --}}
+                <span class="fa fa-edit"><h5 class="modal-title">Edit</h5></span>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -134,11 +135,17 @@
 
 <script>
     $(document).ready(function() {
+
         $('#error-message').hide();
         $('#message').hide();
         $('#cargo-table').DataTable({
             rowReorder: {selector: 'td:nth-child(2)'},
-            responsive: true
+            responsive: true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: -1 }
+            ],
+            pageLength: 5
         });
         $('#cargo-modal').on('hidden.bs.modal', function (e) {
             $(this)
@@ -186,13 +193,13 @@
         });
 
         function fillmodalData(details){
-            $('#name').val(details[0]);
-            $('#cargo_code').val(details[1]);
-            $('#cargo_status').val(details[2]);
-            $('#cargo_description').val(details[3]);
-            $('#official_address').val(details[4]);
-            $('#contact_person').val(details[5]);
-            $('#id').val(details[6]);
+            $('#id').val(details[0]);
+            $('#name').val(details[1]);
+            $('#cargo_code').val(details[2]);
+            $('#cargo_status').val(details[3]);
+            $('#cargo_description').val(details[4]);
+            $('#official_address').val(details[5]);
+            $('#contact_person').val(details[6]);
         }
         // delete
         $(document).on('click', '.delete-modal', function() {
@@ -261,8 +268,8 @@
                         $('.alert-dismissible').addClass('show');
                         $('.error').addClass('hidden');
 
-                        $('.item' + result.id).replaceWith("<tr class='item" +
-                            result.id + "'>" +
+                        $('.item' + result.id + 1).replaceWith("<tr class='item" +
+                            result.id + 1 + "'>" +
                             "<td><img src='{{asset('/img/'.$cargo->name.'.svg')}}' class='img-thumbnail rounded mx-auto d-block' style='height: 50px; width:50px'></td><td>" +
                             result.name + "</td><td>" +
                             result.cargo_status + "</td><td>" +
@@ -271,14 +278,16 @@
                             result.official_address  + "</td><td>" +
                             result.contact_person + "</td>" +
                           "<td><button class='edit-modal btn btn-sm btn-info' data-info='" +
+                          result.id + 1 +","+
                           result.name+","+
                           result.cargo_status+","+
                           result.cargo_code+","+
                           result.cargo_description+","+
                           result.official_address+","+
-                          result.contact_person+","+
-                          result.id+"'><span class='fa fa-edit'></span> Edit</button> <button class='delete-modal btn btn-sm btn-danger' data-info='" + result.id+","+result.first_name+","+result.last_name+","+result.email+","+result.gender+","+result.country+","+result.salary+"' ><span class='fa fa-trash'></span> Delete</button></td></tr>");
-
+                          result.contact_person+"'><span class='fa fa-edit'></span> Edit</button> <button class='delete-modal btn btn-sm btn-danger' data-info='" + result.id+","+result.first_name+","+result.last_name+","+result.email+","+result.gender+","+result.country+","+result.salary+"' ><span class='fa fa-trash'></span> Delete</button></td></tr>");
+                          setTimeout(function() {
+                                location.reload();
+                        }, 1500);
                     }
                 }
             });
@@ -321,7 +330,13 @@
                           result.cargo_description+","+
                           result.official_address+","+
                           result.contact_person+","+
-                          result.id+"'><span class='fa fa-edit'></span> Edit</button> <button class='delete-modal btn btn-sm btn-danger' data-info='" + result.id+","+result.first_name+","+result.last_name+","+result.email+","+result.gender+","+result.country+","+result.salary+"' ><span class='fa fa-trash'></span> Delete</button></td></tr>");
+                          result.id+"'><span class='fa fa-edit'></span> Edit</button> <button class='delete-modal btn btn-sm btn-danger' data-info='" +
+                          result.id+","+
+                          result.cargo_status+","+
+                          result.cargo_code+","+
+                          result.cargo_description+","+
+                          result.official_address+","+
+                          result.contact_person+"'><span class='fa fa-trash'></span> Delete</button></td></tr>");
 
                 }
             });
