@@ -1,12 +1,12 @@
-<p>Installation</p>
+<h1>Installation</h1>
 
-create cargodb
-cp .env.example .env
-edit db .env
+<p>create cargodb</p>
+<p>cp .env.example .env</p>
+<p>edit db .env</p>
 
-cd /cargo-inventory
-composer install/update
-php artisan key:generate
-npm install
-npm run watch
-php artisan serve
+<p>cd /cargo-inventory</p>
+<p>composer install/update</p>
+<p>php artisan key:generate</p>
+<p>npm install</p>
+<p>npm run watch</p>
+<p>php artisan serve</p>
