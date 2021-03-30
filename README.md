@@ -6,6 +6,7 @@
 
 <p>cd /cargo-inventory</p>
 <p>composer install/update</p>
+<p>php artisan migrate</p>
 <p>php artisan key:generate</p>
 <p>npm install</p>
 <p>npm run watch</p>
