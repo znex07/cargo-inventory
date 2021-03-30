@@ -270,7 +270,7 @@
 
                         $('.item' + result.id + 1).replaceWith("<tr class='item" +
                             result.id + 1 + "'>" +
-                            "<td><img src='{{asset('/img/'.$cargo->name.'.svg')}}' class='img-thumbnail rounded mx-auto d-block' style='height: 50px; width:50px'></td><td>" +
+                            "<td><img src='' class='img-thumbnail rounded mx-auto d-block' style='height: 50px; width:50px'></td><td>" +
                             result.name + "</td><td>" +
                             result.cargo_status + "</td><td>" +
                             result.cargo_code + "</td><td>" +
@@ -316,7 +316,7 @@
                     console.log(result.id);
                         $('.item' + result.id).replaceWith("<tr class='item" +
                             result.id + "'>" +
-                            "<td><img src='{{asset('/img/'.$cargo->name.'.svg')}}' class='img-thumbnail rounded mx-auto d-block' style='height: 50px; width:50px'></td><td>" +
+                            "<td><img src='' class='img-thumbnail rounded mx-auto d-block' style='height: 50px; width:50px'></td><td>" +
                             result.name + "</td><td>" +
                             result.cargo_status + "</td><td>" +
                             result.cargo_code + "</td><td>" +
